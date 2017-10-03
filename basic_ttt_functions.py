@@ -22,18 +22,24 @@ def win_check(board_array):
     #check columns
     for x in range(3):
         if board_array[x][0] == board_array[x][1] and board_array[x][1] == board_array[x][2]:
-            if board_array[x][0] == 'X':
-                return 1
+            if board_array[x][0] == ' ':
+                return 0
             else:
-                return 2
+                if board_array[x][0] == 'X':
+                    return 1
+                else:
+                    return 2
     #
     #check rows
     for y in range(3):
         if board_array[0][y] == board_array[1][y] and board_array[1][y] == board_array[2][y]:
-            if board_array[0][y] == 'X':
-                return 1
+            if board_array[0][y] == ' ':
+                return 0
             else:
-                return 2
+                if board_array[0][y] == 'X':
+                    return 1
+                else:
+                    return 2
     #
     #check diagonals
     if board_array[0][0] == board_array[1][1] and board_array[1][1] == board_array[2][2]:

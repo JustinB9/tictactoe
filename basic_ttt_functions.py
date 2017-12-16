@@ -3,7 +3,8 @@ def initialize_board():
     board = [[' ' for x in range(w)] for y in range(h)]
     return board
 
-def check_board(board_array):
+
+def check_for_spaces(board_array):
     for x in board_array:
         for y in x:
             if y == ' ':
@@ -18,38 +19,33 @@ def print_board(board_array):
     str_three = "{} | {} | {}\n".format(board_array[2][0], board_array[2][1], board_array[2][2])
     print str_one + str_fill + str_two + str_fill + str_three
 
+
 def win_check(board_array):
-    #check columns
+    # check columns
     for x in range(3):
         if board_array[x][0] == board_array[x][1] and board_array[x][1] == board_array[x][2]:
-            if board_array[x][0] == ' ':
-                return 0
-            else:
-                if board_array[x][0] == 'X':
-                    return 1
-                else:
-                    return 2
+            if board_array[x][0] == 'X':
+                return 1
+            elif board_array[x][0] == 'O':
+                return 2
     #
-    #check rows
+    # check rows
     for y in range(3):
         if board_array[0][y] == board_array[1][y] and board_array[1][y] == board_array[2][y]:
-            if board_array[0][y] == ' ':
-                return 0
-            else:
-                if board_array[0][y] == 'X':
-                    return 1
-                else:
-                    return 2
+            if board_array[0][y] == 'X':
+                return 1
+            elif board_array[0][y] == 'O':
+                return 2
     #
-    #check diagonals
+    # check diagonals
     if board_array[0][0] == board_array[1][1] and board_array[1][1] == board_array[2][2]:
         if board_array[0][0] == 'X':
             return 1
-        else:
+        elif board_array[0][0] == 'O':
             return 2
     #
-    #check for cat's game
-    if check_board(board_array) == False:
+    # check for cat's game
+    if not check_for_spaces(board_array):
         return 3
 
     return 0

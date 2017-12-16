@@ -13,15 +13,15 @@ print "\t1 - Basic\n"
 print "\t2 - Moderate\n"
 print "\t3 - Impossible\n"
 
-#insert choose statement here later
+# insert choose statement here later
 
 while win_check(board) == 0:
     print "active"
     board = basic_AI(board)
-    #check
+    # check
     print_board(board)
 
-    #terminate dummy plug
+    # terminate dummy plug
 
 
     print win_check(board)

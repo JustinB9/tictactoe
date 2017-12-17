@@ -1,7 +1,8 @@
 import random
-from basic_ttt_functions import check_for_spaces
+from basic_ttt_functions import *
 
-def basic_AI(board_array):
+
+def basic_ai(board_array):
     # if board is full, immediately stop
     if not check_for_spaces:
         return board_array
@@ -23,15 +24,66 @@ def basic_AI(board_array):
     board_array[x_select][y_select] = "O"
     return board_array
 
-def moderate_AI(board_array):
+
+def moderate_ai(board_array):
     # if there are two of a kind in any diagonal, row, or column
     # then the AI will add a letter to the third
     # note that having two is an edge case, and that there are no
     # first, columns
+    for x in range(WIDTH):
+        if board_array[x][0] == board_array[x][1]:
+            if board_array[x][2] == ' ':
+                board_array[x][2] = 'O'
+                return board_array
+        elif board_array[x][1] == board_array[x][2]:
+            if board_array[x][0] == ' ':
+                board_array[x][0] = 'O'
+                return board_array
+        elif board_array[x][0] == board_array[x][2]:
+            if board_array[x][1] == ' ':
+                board_array[x][1] = 'O'
+                return board_array
 
     # second, rows
+    for y in range(HEIGHT):
+        if board_array[0][y] == board_array[1][y]:
+            if board_array[2][y] == ' ':
+                board_array[2][y] = 'O'
+                return board_array
+        elif board_array[1][y] == board_array[2][y]:
+            if board_array[0][y] == ' ':
+                board_array[0][y] = 'O'
+                return board_array
+        elif board_array[0][y] == board_array[2][y]:
+            if board_array[1][y] == ' ':
+                board_array[1][y] = 'O'
+                return board_array
 
     # third, diagonals
+    if board_array[0][0] == board_array[2][2]:
+        if board_array[1][1] == ' ':
+            board_array[1][1] = 'O'
+            return board_array
+    elif board_array[0][0] == board_array[1][1]:
+        if board_array[2][2] == ' ':
+            board_array[2][2] = 'O'
+            return board_array
+    elif board_array[1][1] == board_array[2][2]:
+        if board_array[0][0] == ' ':
+            board_array[0][0] = 'O'
+            return board_array
+    elif board_array[0][2] == board_array[2][0]:
+        if board_array[1][1] == ' ':
+            board_array[1][1] = 'O'
+            return board_array
+    elif board_array[0][2] == board_array[1][1]:
+        if board_array[2][0] == ' ':
+            board_array[2][0] = 'O'
+            return board_array
+    elif board_array[1][1] == board_array[2][0]:
+        if board_array[0][2] == ' ':
+            board_array[0][2] = 'O'
+            return board_array
 
     # if none are found, it will take the center if available
     if board_array[1][1] == ' ':
@@ -39,12 +91,14 @@ def moderate_AI(board_array):
         return board_array
 
     # if that is not available, it will default to basic_AI
-    basic_AI(board_array)
+    board_array = basic_ai(board_array)
     return board_array
 
-def impossible_AI(board_array):
+
+def impossible_ai(board_array):
     return board_array
     # forces a tie at worst
+
 
 def player_turn(board_array):
 

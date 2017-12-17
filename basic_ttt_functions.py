@@ -1,6 +1,8 @@
+WIDTH = 3
+HEIGHT = 3
+
 def initialize_board():
-    w, h = 3, 3
-    board = [[' ' for x in range(w)] for y in range(h)]
+    board = [[' ' for x in range(WIDTH)] for y in range(HEIGHT)]
     return board
 
 
@@ -22,7 +24,7 @@ def print_board(board_array):
 
 def win_check(board_array):
     # check columns
-    for x in range(3):
+    for x in range(WIDTH):
         if board_array[x][0] == board_array[x][1] and board_array[x][1] == board_array[x][2]:
             if board_array[x][0] == 'X':
                 return 1
@@ -30,7 +32,7 @@ def win_check(board_array):
                 return 2
     #
     # check rows
-    for y in range(3):
+    for y in range(HEIGHT):
         if board_array[0][y] == board_array[1][y] and board_array[1][y] == board_array[2][y]:
             if board_array[0][y] == 'X':
                 return 1
@@ -39,10 +41,17 @@ def win_check(board_array):
     #
     # check diagonals
     if board_array[0][0] == board_array[1][1] and board_array[1][1] == board_array[2][2]:
-        if board_array[0][0] == 'X':
+        if board_array[1][1] == 'X':
             return 1
-        elif board_array[0][0] == 'O':
+        elif board_array[1][1] == 'O':
             return 2
+
+    if board_array[2][0] == board_array[1][1] and board_array[1][1] == board_array[0][2]:
+        if board_array[1][1] == 'X':
+            return 1
+        elif board_array[1][1] == 'O':
+            return 2
+
     #
     # check for cat's game
     if not check_for_spaces(board_array):

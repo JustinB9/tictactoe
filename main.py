@@ -17,7 +17,7 @@ print "\t3 - Impossible\n"
 
 while win_check(board) == 0:
     print "active"
-    board = basic_AI(board)
+    board = basic_ai(board)
     # check
     print_board(board)
 
